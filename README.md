@@ -1,37 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Solana Smart Contract Game with Anchor and Next.js
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project implements a simple game on the Solana blockchain using the Anchor framework for the smart contract and Next.js for the user interface (UI). The game allows users to connect their wallets, create or join a game, and bet SPL tokens. The game is designed for two players, and the winner takes the total bet amount. If the game ends in a draw, the bet amount is returned to each player.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Flow
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![alt text](https://github.com/meumar/my-files/blob/main/Game_flow.png?raw=true)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Wallet Integration**: Users can connect their Solana wallets directly through the UI.
+- **Game Creation**: Users can create a new game by specifying the SPL token address and the bet amount.
+- **Join Game**: Other users can join an existing game by choosing the bet amount and the same SPL tokens.
+- **Gameplay**: The game requires two players. The winner takes the total bet amount, or if it's a draw, the bet amount is returned to each player.
+- **Token Transfer**: The smart contract manages the transfer of SPL tokens securely.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Smart Contract**: Built using the [Anchor framework](https://project-serum.github.io/anchor/).
+- **Frontend**: Developed with [Next.js](https://nextjs.org/) for creating the UI.
 
-## Deploy on Vercel
+## Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Node.js](https://nodejs.org/en/)
+- [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
+- [Anchor CLI](https://www.anchor-lang.com/docs/installation)
+- [Next.js](https://nextjs.org/docs/getting-started) (for frontend)
+- [Phantom Wallet](https://phantom.app/) or other Solana-compatible wallets.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# tik-tac-sol
