@@ -59,7 +59,13 @@ const AllGames: NextPage = () => {
     let mappedAccounts: any = [];
     setGamesLoading(true);
     connection
-      .getProgramAccounts(new PublicKey(PROGRAM_ID))
+      .getProgramAccounts(new PublicKey(PROGRAM_ID), {
+        filters: [
+          {
+            dataSize: 186,
+          },
+        ],
+      })
       .then((accounts) => {
         accounts.map(({ pubkey, account }) => {
           try {
@@ -72,21 +78,26 @@ const AllGames: NextPage = () => {
             const { turn, other_player, winner } = gamStateModal.decode(
               account.data.slice(gameOffset, account.data.length)
             );
-            let win = "";
-            try {
-              win = winner.toBase58();
-            } catch (e) {}
-            mappedAccounts.push({
-              player: player.toBase58(),
-              token: token_account.toBase58(),
-              amount: bet_amount.toNumber(),
-              game_state: game_state,
-              turn: turn.toBase58(),
-              other_player: other_player.toBase58(),
-              winner: win,
+            if (
+              token_account.toBase58() !== "11111111111111111111111111111111" &&
+              player.toBase58() !== "11111111111111111111111111111111"
+            ) {
+              let win = "";
+              try {
+                win = winner.toBase58();
+              } catch (e) {}
+              mappedAccounts.push({
+                player: player.toBase58(),
+                token: token_account.toBase58(),
+                amount: bet_amount.toNumber(),
+                game_state: game_state,
+                turn: turn.toBase58(),
+                other_player: other_player.toBase58(),
+                winner: win,
 
-              game: pubkey.toBase58(),
-            });
+                game: pubkey.toBase58(),
+              });
+            }
           } catch (e) {}
         });
         setAllGames(mappedAccounts);
@@ -142,6 +153,7 @@ const AllGames: NextPage = () => {
                     button_label={getGamelabel(acc)}
                     other_player={acc.other_player}
                     game_state={acc.game_state}
+                    winner={acc.winner}
                   />
                 </div>
               );

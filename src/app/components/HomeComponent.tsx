@@ -28,7 +28,10 @@ const HomeComponent: NextPage = () => {
       new PublicKey(PROGRAM_ID)
     );
     let accountDetails = await connection.getAccountInfo(gameWallet);
+    console.log("accountDetails", accountDetails);
     if (accountDetails == null) {
+      setGameWalletInitiated(true);
+    }else if(gameWalletInitiated){
       setGameWalletInitiated(false);
     }
   };

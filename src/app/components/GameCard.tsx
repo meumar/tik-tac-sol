@@ -16,6 +16,7 @@ const GameCard = ({
   button_label,
   other_player,
   game_state,
+  winner,
 }: {
   player: string;
   token: string;
@@ -24,6 +25,7 @@ const GameCard = ({
   button_label: String;
   other_player: String;
   game_state: number;
+  winner: String;
 }) => {
   const [gamesLoading, setGamesLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -121,9 +123,19 @@ const GameCard = ({
       <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 truncate">
         Token: {token}
       </p>
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 truncate">
-        Player: {player}
-      </p>
+      {winner ? (
+        <>
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 truncate">
+            Winner: {winner}
+          </p>
+        </>
+      ) : (
+        <>
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 truncate">
+            Player: {player}
+          </p>
+        </>
+      )}
       <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 truncate">
         Bet amount: {amount}
       </p>
